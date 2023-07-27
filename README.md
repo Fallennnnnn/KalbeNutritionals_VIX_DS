@@ -31,10 +31,10 @@ To Collaborate on this project u need to install these requirements
 <a href="https://pypi.org/project/pmdarima/"><img src="https://img.shields.io/badge/PMDArima-blue" width="100"></a>
 
 ## Dataset Used
-- customer.csv
-- product.csv
-- store.csv
-- transaction.csv
+- [Customer](Dataset/customer.csv)
+- [Product](Dataset/product.csv)
+- [Store](Dataset/store.csv)
+- [Transaction](Dataset/transaction.csv)
 
 ## Install Dependencies
 **Pandas**
@@ -69,7 +69,7 @@ To Collaborate on this project u need to install these requirements
 
 # Project Result
 ## Data Ingestion and Exploratory Data Analysis using PostgreSQL and DBeaver
-First we need to install PostgreSQL and DBeaver in local computer and import dataset and use ; separator and this is the DBSchema
+First we need to install PostgreSQL and DBeaver in local computer and import dataset and use ; separator and this is the DBSchema <br>
 <img src="EDA_SQL/DBSchema.png" alt="Schema" width="500" height="auto"> <br>
 > This is the challenge result 
 - Average Age Based on Gender <br>
@@ -95,3 +95,51 @@ also you can view the complete challenge query in here [Challenge_Query](EDA_SQL
 <img src="Dashboard/Dashboard 1.png" alt="dash" width="auto" height="auto">
 you  can check the interactive dashboard from this link <a href="http://surl.li/jlvmu">Tableau Dashboard</a>.
 
+## Forecast using ARIMA Models
+- First step before we go to forecast is **Data Cleansing**. In this step we merge data into 1 table and clear null values and this is the sample data from merged table <br>
+<img src="Predictions/Visualization/merged_data.png" alt="mergedtable" width="auto" height="auto"> <br> 
+- Next we make new DataFrame for Forecasting value which involves grouping by date and aggregating the 'qty' column using the sum function <br>
+<img src="Predictions/Visualization/forecast_df.png" alt="forecast" width="auto" height="auto"> <br>
+<img src="Predictions/Visualization/forecast_df2.png" alt="forecast" width="auto" height="auto"> <br>
+- In order to use the ARIMA model, the data must be in a stationary condition. We check for data stationarity by examining the ACF and PACF plots, as well as conducting the ADF test. The ACF and PACF plot results show a horizontal scatter pattern, indicating that the data is stationary. Additionally, the ADF test result reveals p-values close to zero, further confirming that the data is stationary. <br>
+<img src="Predictions/Visualization/Stationarycheck.png" alt="stat" width="600" height="auto"> <br>
+<img src="Predictions/Visualization/ADFTest.png" alt="adf" width="auto" height="auto"> <br>
+- The next step involves modeling using ARIMA, where we need to determine the appropriate values for parameters p, d, and q. To achieve this, we explore two approaches: trial-and-error and auto-fit ARIMA. In this project, we used **auto ARIMA** method and found that best parameter is **ARIMA(5,1,0)** <br>
+- This is the result for 1 month quantity sold forecast and the mean is 50 quantity product sold <br>
+<img src="Predictions/Visualization/1 Month Quantity Sold.png" alt="qtysold" width="600" height="auto"> <br>
+- This is the result for 1 month quantity sold forecast for each product <br>
+<img src="Predictions/Visualization/1 Month All Product Quantity Sold.png" alt="adf" width="600" height="auto"> <br>
+you can check the source code here [Forecast Notebook](Predictions/Kalbe_Predictions.ipnyb)
+
+## Clustering using KMeans 
+- First step we make new DataFrame for Clstering value which involve grouping by CustomerID and aggregating the 'transaction id' column using the count function, 'qty' column using the sum function  , and 'totalamount' column using the sum function <br>
+<img src="Clustering/Visualization/merged_table.png" alt="elbow" width="auto" height="auto"> <br>
+- Next the data is checked for outliers and standardized, as these steps are crucial for the clustering model.
+- Next, the elbow method is applied to determine the optimal number of clusters, resulting in three clusters <br>
+<img src="Clustering/Visualization/elbow.png" alt="elbow" width="600" height="auto"> <br>
+- After that we plot the cluster and visualize it <br>
+<img src="Clustering/Visualization/data.png" alt="mergedtable" width="auto" height="auto"> <br>
+<img src="Clustering/Visualization/KMeans Cluster.png" alt="cluster" width="600" height="auto"> <br>
+Based on the customer segmentation with 3 clusters we can segmentize each clusters for better personalized promotion dan sales treatment.
+  - **Cluster 0** is new customers
+  - **Cluster 1** is loyal customers
+  - **Cluster 2** is potential loyal customers <br>
+- For further analysis we use RFM Analysis to make recommendation based on the visualizations <br>
+<img src="Clustering/Visualization/RFM Analysis.png" alt="RFM" width="600" height="auto"> <br>
+So we can conclude that each cluster has its different characteristics and we can make personalized promotion dan sales treatment like this.
+
+- **Cluster 0** is customers that may need incentives to re-engage with our brand.
+  - Strategies that can be used
+  - Give Extra Discount
+  - Give Extra Benefit After Purchasing Product Like Free Shipping
+  - Personalized Promotions
+- **Cluster 1** is customers that are valuable to our business and should be targeted with exclusive offers to maintain loyalty.
+  - Strategies that can be used
+  - Give Loyalty Exclusive Offer
+  - Give Loyalty Program and Benefits
+  - Early Access to Product and Special Discount
+- **Cluster 2** is customers that have potential for upselling, as they already purchase occasionally.
+  - Strategies that can be used
+  - Bundle Offers
+  - Offer Loyalty Program with Various Benefits
+  - Special Discount
