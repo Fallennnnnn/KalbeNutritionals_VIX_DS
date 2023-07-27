@@ -143,3 +143,5 @@ So we can conclude that each cluster has its different characteristics and we ca
   - Bundle Offers
   - Offer Loyalty Program with Various Benefits
   - Special Discount
+
+you can check the source code here [Clustering Notebook](Clustering/Kalbe_Clustering.ipnyb)
