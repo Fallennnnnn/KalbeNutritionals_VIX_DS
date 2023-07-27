@@ -109,7 +109,7 @@ you  can check the interactive dashboard from this link <a href="http://surl.li/
 <img src="Predictions/Visualization/1 Month Quantity Sold.png" alt="qtysold" width="600" height="auto"> <br>
 - This is the result for 1 month quantity sold forecast for each product <br>
 <img src="Predictions/Visualization/1 Month All Product Quantity Sold.png" alt="adf" width="600" height="auto"> <br>
-you can check the source code here [Forecast Notebook](Predictions/Kalbe_Predictions.ipnyb)
+you can check the source code here [Forecast_Notebook](Predictions/Kalbe_Predictions.ipynb)
 
 ## Clustering using KMeans 
 - First step we make new DataFrame for Clstering value which involve grouping by CustomerID and aggregating the 'transaction id' column using the count function, 'qty' column using the sum function  , and 'totalamount' column using the sum function <br>
