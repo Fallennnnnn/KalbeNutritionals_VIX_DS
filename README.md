@@ -30,6 +30,12 @@ To Collaborate on this project u need to install these requirements
 <a href="https://scikit-learn.org/"><img src="https://scikit-learn.org/0.15/_images/scikit-learn-logo-notext.png" width="100"></a>
 <a href="https://pypi.org/project/pmdarima/"><img src="https://img.shields.io/badge/PMDArima-blue" width="100"></a>
 
+## Dataset Used
+- customer.csv
+- product.csv
+- store.csv
+- transaction.csv
+
 ## Install Dependencies
 **Pandas**
 
@@ -62,5 +68,30 @@ To Collaborate on this project u need to install these requirements
 ```
 
 # Project Result
+## Data Ingestion and Exploratory Data Analysis using PostgreSQL and DBeaver
+First we need to install PostgreSQL and DBeaver in local computer and import dataset and use ; separator and this is the DBSchema
+<img src="EDA_SQL/DBSchema.png" alt="Schema" width="500" height="auto"> <br>
+> This is the challenge result 
+- Average Age Based on Gender <br>
+  <img src="EDA_SQL/AverageAge_gender.png" alt="avg_gender" width="200" height="auto">
+- Average Age Based on Marital Status <br>
+  <img src="EDA_SQL/AverageAge_marital.png" alt="avg_marital" width="200" height="auto">
+- Store Name with Most Quantity <br>
+  <img src="EDA_SQL/store_mostquantity.png" alt="store" width="200" height="auto">
+- Product with Highest Selling <br>
+  <img src="EDA_SQL/product_highestsell.png" alt="prodsell" width="200" height="auto">
+  
+also you can view the complete challenge query in here [Challenge_Query](EDA_SQL/Challenge_Query.sql)
 
+## Visualizing Dashboard using Tableau 
+- Make a account in Tableau Public
+- Create Web Authoring and import the dataset given
+- Make 4 worksheet
+  - Total quantity sold Month to Month
+  - Total amount revenue daily 
+  - Total quantity sold by products
+  - Total revenue by store name
+- Make dashboard and this is the result
+<img src="Dashboard/Dashboard 1.png" alt="dash" width="auto" height="auto">
+you  can check the interactive dashboard from this link <a href="http://surl.li/jlvmu">Tableau Dashboard</a>.
 
